@@ -88,5 +88,6 @@ flutter:
   #
   assets:
     - assets/play.jpg
+    -  assets/welcome.jpg
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
