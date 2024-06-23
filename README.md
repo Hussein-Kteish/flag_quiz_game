@@ -1,16 +1,3 @@
 # flag_quiz_game
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+FlagQuiz is an interactive quiz game where players identify flags from various countries, categorized into Easy, Medium, and Hard levels. Flags are shuffled within each level, and the game tracks progress and correct answers, providing a fun and educational experience.
