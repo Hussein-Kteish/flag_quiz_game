@@ -88,6 +88,21 @@ flutter:
   #
   assets:
     - assets/play.jpg
-    -  assets/welcome.jpg
+    - assets/welcome.jpg
+    - assets/Lebanon.png
+    - assets/france.png
+    - assets/Spain.png
+    - assets/Syria.png
+    - assets/Palestine.png
+    - assets/Tunisia.png
+    - assets/Turkey.jpg
+    - assets/Russia.png
+    - assets/Somalia.png
+    - assets/comoros.png
+    - assets/Bhutan.png
+    - assets/Malta.jpg
+    - assets/Brunei.jpg
+    - assets/Kyrgyztan.jpg
+    - assets/Sicily.jpg
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
