@@ -10,28 +10,30 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  final Map<String, String> images = {
-    'assets/Lebanon.png': 'easy',
-    'assets/france.png': 'easy',
-    'assets/Spain.png': 'easy',
-    'assets/Syria.jpg': 'easy',
-    'assets/Palestine.jpg': 'easy',
-    'assets/Tunisia.png': 'medium',
-    'assets/Turkey.jpg': 'medium',
-    'assets/Russia.png': 'medium',
-    'assets/Somalia.png': 'medium',
-    'assets/comoros.png': 'medium',
-    'assets/Bhutan.png': 'hard',
-    'assets/Malta.jpg': 'hard',
-    'assets/Brunei.jpg': 'hard',
-    'assets/Kyrgyztan.jpg': 'hard',
-    'assets/Sicily.jpg': 'hard'
-  };
+  final List<Map<String, String>> images = [
+    {'path': 'assets/Lebanon.png', 'country': 'Lebanon', 'difficulty': 'easy'},
+    {'path': 'assets/france.png', 'country': 'France', 'difficulty': 'easy'},
+    {'path': 'assets/Spain.png', 'country': 'Spain', 'difficulty': 'easy'},
+    {'path': 'assets/Syria.jpg', 'country': 'Syria', 'difficulty': 'easy'},
+    {'path': 'assets/Palestine.jpg', 'country': 'Palestine', 'difficulty': 'easy'},
+    {'path': 'assets/Tunisia.png', 'country': 'Tunisia', 'difficulty': 'medium'},
+    {'path': 'assets/Turkey.jpg', 'country': 'Turkey', 'difficulty': 'medium'},
+    {'path': 'assets/Russia.png', 'country': 'Russia', 'difficulty': 'medium'},
+    {'path': 'assets/Somalia.png', 'country': 'Somalia', 'difficulty': 'medium'},
+    {'path': 'assets/comoros.png', 'country': 'Comoros', 'difficulty': 'medium'},
+    {'path': 'assets/Bhutan.png', 'country': 'Bhutan', 'difficulty': 'hard'},
+    {'path': 'assets/Malta.jpg', 'country': 'Malta', 'difficulty': 'hard'},
+    {'path': 'assets/Brunei.jpg', 'country': 'Brunei', 'difficulty': 'hard'},
+    {'path': 'assets/Kyrgyztan.jpg', 'country': 'Kyrgyzstan', 'difficulty': 'hard'},
+    {'path': 'assets/Sicily.jpg', 'country': 'Sicily', 'difficulty': 'hard'}
+  ];
 
-  List<String> easyImages = [];
-  List<String> mediumImages = [];
-  List<String> hardImages = [];
-  List<String> currentImages = [];
+
+  List<Map<String, String>> easyImages = [];
+  List<Map<String, String>> mediumImages = [];
+  List<Map<String, String>> hardImages = [];
+  List<Map<String, String>> currentImages = [];
+
 
   int i = 0;
   int count = 0;
@@ -39,15 +41,15 @@ class _QuizState extends State<Quiz> {
   @override
   void initState() {
     super.initState();
-    images.forEach((key, value) {
-      if (value == 'easy') {
-        easyImages.add(key);
-      } else if (value == 'medium') {
-        mediumImages.add(key);
-      } else if (value == 'hard') {
-        hardImages.add(key);
+    for (var image in images) {
+      if (image['difficulty'] == 'easy') {
+        easyImages.add(image);
+      } else if (image['difficulty'] == 'medium') {
+        mediumImages.add(image);
+      } else if (image['difficulty'] == 'hard') {
+        hardImages.add(image);
       }
-    });
+    }
 
     // Shuffle each list separately
     easyImages.shuffle();
@@ -57,6 +59,7 @@ class _QuizState extends State<Quiz> {
     // Combine the lists to form the currentImages list
     currentImages = [...easyImages, ...mediumImages, ...hardImages];
   }
+
 
   // Boolean variables to track button clicks
   Map<String, bool> clickedFlags = {
@@ -79,10 +82,11 @@ class _QuizState extends State<Quiz> {
 
   void handleAnswer(String country) {
     setState(() {
-      String currentImage = currentImages[i];
-      if (currentImage.contains(country.toLowerCase()) && !clickedFlags[currentImage]!) {
+      String currentImagePath = currentImages[i]['path']!;
+      String currentCountry = currentImages[i]['country']!;
+      if (currentCountry == country && !clickedFlags[currentImagePath]!) {
         count++;
-        clickedFlags[currentImage] = true;
+        clickedFlags[currentImagePath] = true;
       }
       if (i != currentImages.length - 1) {
         i++;
@@ -95,6 +99,7 @@ class _QuizState extends State<Quiz> {
       }
     });
   }
+
 
   Widget buildAnswerButton(String country) {
     return ElevatedButton(
@@ -141,7 +146,7 @@ class _QuizState extends State<Quiz> {
                     },
                     child: const Icon(Icons.navigate_before),
                   ),
-                Image.asset(currentImages[i], width: 200),
+                  Image.asset(currentImages[i]['path']!, width: 200),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
